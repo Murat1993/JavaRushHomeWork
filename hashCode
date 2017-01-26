@@ -1,0 +1,21 @@
+public boolean equals(Object o) {
+        if (this == o)
+            return true;
+
+        if (o == null)
+            return false;
+
+        if (!(o instanceof Solution))
+            return false;
+
+        Solution n = (Solution) o;
+        return n.first.equals(first) && n.last.equals(last);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = first != null ? first.hashCode() : 0;
+        result = 31 * result + (last != null ? last.hashCode() : 0);
+        return result;
+    }

@@ -1,0 +1,61 @@
+file1:            file2:        lines:
+
+строка1           строка1       SAME строка1
+строка2           строка3       REMOVED строка2
+строка3           строка5       SAME строка3
+строка4           строка0       REMOVED строка4
+строка5           строка1       SAME строка5
+строка1           строка3       ADDED строка0
+строка2           строка5       SAME строка1
+строка3           строка4
+                                REMOVED строка2
+строка4                         SAME строка3
+строка5                         ADDED строка5
+                                SAME строка4
+                                REMOVED строка5
+
+                               SAME 1
+                               REMOVED 2
+                               SAME 3
+                               REMOVED 4
+                               SAME 5
+                               ADDED 0
+                               SAME 1
+                               REMOVED 2
+                               SAME 3
+                               ADDED 5
+                               SAME 4
+                               REMOVED 5
+
+correct for first test:
+
+
+boolean previousWasSame = false;
+            for (int i = 0, j = 0; i < stringsFile1.size(); i++) {
+                if (previousWasSame) {
+                        if (!stringsFile1.get(i).equals(stringsFile2.get(j)))
+                        {
+                            if (stringsFile1.get(i+1).equals(stringsFile2.get(j))) {
+                                lines.add(new LineItem(Type.REMOVED, stringsFile1.get(i)));
+                                stringsFile1.remove(0);
+                                i--;
+                            }
+                            else if (stringsFile1.get(i).equals(stringsFile2.get(j + 1))) {
+                                    lines.add(new LineItem(Type.ADDED, stringsFile2.get(j)));
+                                    i--;
+                                    j++;
+                            }
+                        }
+                    previousWasSame = false;
+                }
+                else {
+                    if (stringsFile1.get(i).equals(stringsFile2.get(j)))
+                    {
+                        lines.add(new LineItem(Type.SAME, stringsFile1.get(i)));
+                        stringsFile1.remove(0);
+                        i--;
+                        j++;
+                        previousWasSame = true;
+                    }
+                }
+            }

@@ -1,0 +1,7 @@
+// [ok]
+        if (Room.game.getMouse().getX() == head.getX() && Room.game.getMouse().getY() == head.getY())
+            Room.game.eatMouse();
+
+        // [ok]
+        sections.add(0, head);
+        sections.remove(sections.size() - 1);

@@ -1,0 +1,8 @@
+something about serialization
+ant test string after deserialization
+something about serialization
+ant test string after deserialization
+something about serialization
+ant test string after deserialization
+something about serialization
+ant test string after deserialization

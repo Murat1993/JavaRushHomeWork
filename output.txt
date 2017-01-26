@@ -1,0 +1,46 @@
+for (int i = 0; i < 4; i++)
+            {
+                if (i == 0)
+                {
+                    String[] fullName = list.get(i).split(" ");
+                    user.setFirstName(fullName[0]);
+                    user.setLastName(fullName[1]);
+                }
+
+                if (i == 1)
+                {
+                    String pattern = "dd/MM/yyyy";
+                    SimpleDateFormat format = new SimpleDateFormat(pattern);
+                    user.setBirthDate(format.parse(list.get(i)));
+                }
+
+                if (i == 2)
+                {
+                    if (list.get(i).equals("true"))
+                    {
+                        user.setMale(true);
+                    } else
+                    {
+                        user.setMale(false);
+                    }
+                }
+
+                if (i == 3)
+                {
+                    String country = list.get(i);
+                    switch (country)
+                    {
+                        case "Russia":
+                            user.setCountry(User.Country.RUSSIA);
+                            break;
+                        case "Ukraine":
+                            user.setCountry(User.Country.UKRAINE);
+                            break;
+                        default:
+                            user.setCountry(User.Country.OTHER);
+                            break;
+                    }
+                    list.removeAll(list.subList(0, 3));
+                    i = 0;
+                }
+            }

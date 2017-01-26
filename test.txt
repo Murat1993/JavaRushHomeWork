@@ -1,0 +1,79 @@
+file1:            file2:        lines:
+
+строка1           строка1       SAME строка1
+строка2           строка3       REMOVED строка2
+строка3           строка5       SAME строка3
+строка4           строка0       REMOVED строка4
+строка5           строка1       SAME строка5
+строка1           строка3       ADDED строка0
+строка2           строка5       SAME строка1
+строка3           строка4       REMOVED строка2
+строка4                         SAME строка3
+строка5                         ADDED строка5
+                                SAME строка4
+                                REMOVED строка5
+
+
+
+
+
+
+
+
+
+
+
+
+                                for (int i = 0; i < stringsFile1.size(); i++) {
+
+                                                // Если предыдущая была SAME то заходим
+                                                if (previousWasSame) {
+
+                                                    // Если это последняя строка, и она не равна строке из второго файла
+                                                    if (stringsFile1.size() == 1 && !stringsFile1.get(i).equals(stringsFile2.get(i))) {
+                                                        String removed = stringsFile1.remove(i);
+                                                        lines.add(new LineItem(Type.REMOVED, removed));
+                                                        i--;
+                                                    }
+                                                    else if (stringsFile1.isEmpty() && stringsFile2.size() > 0) {
+                                                        lines.add(new LineItem(Type.ADDED, stringsFile2.get(i)));
+                                                    }
+
+                                                    else
+                                                    {
+                                                        // Если есть еще строки во втором файле
+                                                        if (stringsFile2.size() > 0)
+                                                        {
+                                                            if (!stringsFile1.get(i).equals(stringsFile2.get(i)))
+                                                            {
+                                                                String removed = stringsFile1.get(i);
+                                                                stringsFile1.remove(i);
+
+                                                                if (stringsFile1.get(i).equals(stringsFile2.get(i)))
+                                                                {
+                                                                    lines.add(new LineItem(Type.REMOVED, removed));
+                                                                    i--;
+                                                                    previousWasSame = false;
+                                                                } else
+                                                                {
+
+                                                                }
+                                                            }
+                                                        } else if (stringsFile2.isEmpty())
+                                                        {
+                                                            lines.add(new LineItem(Type.REMOVED, stringsFile1.get(i)));
+                                                        }
+                                                    }
+
+                                                }
+
+                                                // Если предыдущая не SAME
+                                                else
+                                                {
+                                                    lines.add(new LineItem(Type.SAME, stringsFile1.get(i)));
+                                                    stringsFile1.remove(i);
+                                                    stringsFile2.remove(i);
+                                                    i--;
+                                                    previousWasSame = true;
+                                                }
+                                            }

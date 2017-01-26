@@ -1,0 +1,102 @@
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+
+153
+370
+371
+407
+
+
+1634
+8208
+9474
+
+
+54748
+92727
+93084
+
+
+548834
+
+1741725
+4210818
+9800817
+9926315
+
+
+24678050
+24678051
+88593477
+
+146511208
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9 ok
+
+153
+370
+371
+407 ok
+
+1634
+8208
+9474 ok
+
+54748
+92727
+93084 ok
+
+548834 ok
+
+1741725 ok
+4210818 ok
+9800817 ok
+9926315 ok
+
+24678050 ok
+24678051 ok
+88593477 ok
+
+146511208 ok
+
+//sum += Math.pow(Double.parseDouble(String.valueOf(number[j])), number.length);
+
+
+//        byte b = (byte) 192;
+//        System.out.println("One binary string: ");
+//
+//        System.out.println("Before: " + b);
+//        System.out.print("After: ");
+//        System.out.println(b & 0xFF);
+//        System.out.println(Integer.toBinaryString(b & 0xFF));
+//        System.out.println(Integer.toBinaryString((byte) 168 & 0xFF));
+//        System.out.println((byte) 1 & 0xFF);
+//        System.out.println(Integer.toBinaryString((byte) 2 & 0xFF));
+
+
+//        long ipAddress = 3232235778L;
+//        String binary = Long.toBinaryString(ipAddress);
+//        System.out.println(binary);
+//        System.out.println((ipAddress >> 24) & 0xFF);
+//        System.out.println((ipAddress >> 16) & 0xFF);
+//        System.out.println((ipAddress >> 8) & 0xFF);
+//        System.out.println((ipAddress) & 0xFF);
+//        System.out.println(Integer.toBinaryString(0xFF));
+//        System.out.println(Integer.toBinaryString(255 << 24));
