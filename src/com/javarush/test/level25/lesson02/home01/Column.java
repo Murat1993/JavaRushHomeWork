@@ -1,8 +1,10 @@
 package com.javarush.test.level25.lesson02.home01;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 
-public enum Column implements Columnable {
+public enum Column implements Columnable
+{
     Customer("Customer")
             {
                 @Override
@@ -84,11 +86,11 @@ public enum Column implements Columnable {
                 }
             };
 
+    private static int[] realOrder;
     private String columnName;
 
-    private static int[] realOrder;
-
-    private Column(String columnName) {
+    private Column(String columnName)
+    {
         this.columnName = columnName;
     }
 
@@ -99,15 +101,20 @@ public enum Column implements Columnable {
      * @param newOrder новая последовательность колонок, в которой они будут отображаться в таблице
      * @throws IllegalArgumentException при дубликате колонки
      */
-    public static void configureColumns(Column... newOrder) {
+    public static void configureColumns(Column... newOrder)
+    {
         realOrder = new int[values().length];
-        for (Column column : values()) {
+        for (Column column : values())
+        {
             realOrder[column.ordinal()] = -1;
             boolean isFound = false;
 
-            for (int i = 0; i < newOrder.length; i++) {
-                if (column == newOrder[i]) {
-                    if (isFound) {
+            for (int i = 0; i < newOrder.length; i++)
+            {
+                if (column == newOrder[i])
+                {
+                    if (isFound)
+                    {
                         throw new IllegalArgumentException("Column '" + column.columnName + "' is already configured.");
                     }
                     realOrder[column.ordinal()] = i;
@@ -117,20 +124,21 @@ public enum Column implements Columnable {
         }
     }
 
+
     /**
      * Вычисляет и возвращает список отображаемых колонок в сконфигурированом порядке (см. метод configureColumns)
      * Используется поле realOrder.
      *
      * @return список колонок
      */
-    public static List<Column> getVisibleColumns() {
+    public static List<Column> getVisibleColumns()
+    {
         List<Column> result = new LinkedList<>();
 
         for (Column column : values())
-            if (realOrder[column.ordinal()] != -1)
+            if (realOrder[column.ordinal()] != -1) {
                 result.add(column);
-
-        Collections.sort(result);
+            }
 
         return result;
     }

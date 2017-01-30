@@ -31,5 +31,6 @@ public class Solution {
         for (Columnable columnable : Column.getVisibleColumns()) {
             System.out.println(columnable.getColumnName());
         }
+
     }
 }

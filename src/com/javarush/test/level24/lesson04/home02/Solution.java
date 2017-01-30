@@ -21,19 +21,28 @@ public class Solution implements Action {
             //!!!!! All changes have to be here
             //!!!!! Все изменения должны быть только тут
             if (param > 0) {
+                while (param > 0) {
+                    System.out.println(param);
+                    param--;
+                }
                 new FirstClass()
                 {
                     @Override
                     public Action getDependantAction()
                     {
-                        return null;
+                        return this;
                     }
                 }.someAction();
-                param--;
+
+                SecondClass secondClass = new SecondClass();
+                secondClass.someAction();
+                System.out.println(SecondClass.SPECIFIC_ACTION_FOR_ANONYMOUS_SECOND_CLASS_PARAM + param);
             }
             else {
                 new SecondClass().someAction();
+                System.out.println(SecondClass.SPECIFIC_ACTION_FOR_ANONYMOUS_SECOND_CLASS_PARAM + param);
             }
+
         }
     };
 
