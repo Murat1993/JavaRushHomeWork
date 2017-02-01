@@ -51,7 +51,35 @@ public class Solution {
     public static void sort(List<Stock> list) {
         Collections.sort(list, new Comparator<Stock>() {
             public int compare(Stock stock1, Stock stock2) {
-                return 0;
+
+                String name1 = ((String) stock1.get("name"));
+                String name2 = ((String) stock2.get("name"));
+
+                int result = name1.compareTo(name2);
+
+                // если имена не равны
+                if (result != 0) {
+                    return result;
+                }
+                else { // если имена равны
+                    Date date1 = (Date) stock1.get("date");
+                    Date date2 = (Date) stock2.get("date");
+
+                    int dateCompare = date1.compareTo(date2);
+
+                    // если даты не равны
+                    if (dateCompare != 0) {
+                        return dateCompare;
+                    }
+                    // если даты равны
+                    else {
+                        Double profit1  = (Double)stock1.get("last") - (Double)stock1.get("open");
+                        Double profit2  = (Double)stock2.get("last") - (Double)stock2.get("open");
+
+                        return profit2.compareTo(profit1);
+                    }
+
+                }
             }
         });
     }
